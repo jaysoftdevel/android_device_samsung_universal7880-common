@@ -1,0 +1,23 @@
+- domain_deprecated
+	- removed attribute "domain_deprecated" from related .te files
+- log_device
+	- added "/dev/log(/.*)?		u:object_r:log_device:s0" into file_contexts       
+	- added "type log_device, dev_type, mlstrustedobject;" into device.te
+- gpsd
+	- added "type gpsd, domain;
+			 type gpsd_exec, exec_type, file_type;" to file gpsd.te
+	//- added "type_transition gpsd gps_data_file:sock_file gps_socket;" to gpsd.te
+- gps_data_file
+	- added "type gps_data_file, file_type, data_file_type;" to file.te
+- gps_device
+	- added "/dev/gnss_ipc" to device.te
+- wpa
+	- added "type wpa, domain;
+			 type wpa_exec, exec_type, file_type;" to file wpa.te
+- neverallow rules (in folder system/)
+	- comment "neverallow kernel self:capability { dac_override dac_read_search };" in file kernel.te (line 104)
+	- comment "neverallow * *:{ blk_file chr_file } rename;" in file domain.te (line 337)
+	- comment "allow gpsd self:netlink_kobject_uevent_socket create_socket_perms;" in file gpsd.te (line 16)
+
+- types undefined
+	- add "type sysfs_writable, fs_type, sysfs_type, mlstrustedobject;" to file.te

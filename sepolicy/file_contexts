@@ -51,6 +51,9 @@
 /dev/batch_io                u:object_r:sensor_device:s0
 /dev/ssp_sensorhub           u:object_r:sensor_device:s0
 
+#JSD: added logger from system prebuilds
+/dev/log(/.*)?		u:object_r:log_device:s0
+
 # TFA98xx amplifier
 /dev/i2c-20                  u:object_r:amplifier_device:s0
 
